@@ -1,0 +1,78 @@
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.chrono__values {
+    text-align: center;
+    font-size: 10vh;
+    padding: 8vh;
+}
+
+.chrono__tools {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 70%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.chrono__button {
+    display: flex;
+    padding: 3vh;
+    font-size: 3vh;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 900;
+    color:#fff;
+    background: rgb(65, 65, 65);
+
+}
+
+.chrono__button:hover {
+    background:rgb(240, 172, 83);
+}
+
+
+.chrono__button .button--start {
+
+}
+
+.chrono__button .button--pause {
+
+}
+
+.chrono__button .button--stop {
+
+}
+
+.chrono__button .button--reset {
+
+}
+
+@media (max-width: 520px) {
+    .chrono__values {
+        text-align: center;
+        font-size: 5vh;
+        padding: 5vh;
+        overflow: hidden;
+    }
+    
+    .chrono__tools {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+    
+    .chrono__button {
+        display: flex;
+        padding: 3vh;
+        font-size: 3vh;
+        margin-bottom: 1vh;
+        width:100%;
+    }
+}

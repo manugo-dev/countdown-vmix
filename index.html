@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./toastify.min.css" />
+</head>
+<body>
+    <div id="chrono">
+        <div id="values" class="chrono__values">00:00:00</div>
+        <div class="chrono__tools">
+            <button id="startButton" class="chrono__button button--start">Start</button>
+            <button id="pauseButton" class="chrono__button button--pause">Pause</button>
+            <button id="stopButton" class="chrono__button button--stop">Stop</button>
+            <button id="resetButton" class="chrono__button button--reset">Reset</button>
+        </div>
+    </div>
+    
+<script src="./axios.min.js"></script>
+<script src="./toastify-js.js"></script>
+
+<script>
+let server = "http://localhost:3000/"
+
+document.querySelector("#startButton").addEventListener(`click`, () => {
+    axios.get(server + `time/start`)
+    .then(response => {
+        Toastify({
+            text: response.data,
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "bottom",
+            position: 'center',
+            backgroundColor: "black",
+            stopOnFocus: true,
+            onClick: function(){}
+        }).showToast();
+    })
+});
+document.querySelector("#pauseButton").addEventListener(`click`, () => {
+    axios.get(server + `time/pause`)
+    .then(response => {
+        Toastify({
+            text: response.data,
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "bottom",
+            position: 'center',
+            backgroundColor: "black",
+            stopOnFocus: true,
+            onClick: function(){}
+        }).showToast();
+    })
+});
+document.querySelector("#stopButton").addEventListener(`click`, () => {
+    axios.get(server + `time/stop`)
+    .then(response => {
+        Toastify({
+            text: response.data,
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "bottom",
+            position: 'center',
+            backgroundColor: "black",
+            stopOnFocus: true,
+            onClick: function(){}
+        }).showToast();
+    })
+});
+document.querySelector("#resetButton").addEventListener(`click`, () => {
+    axios.get(server + `time/reset`)
+    .then(response => {
+        Toastify({
+            text: response.data,
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "bottom",
+            position: 'center',
+            backgroundColor: "black",
+            stopOnFocus: true,
+            onClick: function(){}
+        }).showToast();
+    })
+});
+
+const setClock = (data) => {
+    document.querySelector("#values").innerHTML = data;
+}
+
+const updateClock = () => {
+    axios.get(server + `time`)
+    .then(response => setClock(response.data))
+}
+
+t = setInterval(updateClock, 500);
+
+</script>
+</body>
+</html>
