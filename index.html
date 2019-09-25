@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="./toastify.min.css" />
 </head>
 <body>
-    <div id="chrono">
+    <div id="chrono" class="chrono">
+            <button class="chrono_fullscreen" onclick="openFullscreen();">Pantalla Completa</button>
+        <div class="chronoTime">Ingresa el tiempo para cuenta regresiva: <select id="typeOfTime">
+            <option value="1">Segundos</option>
+            <option value="2">Minutos</option>
+          </select><input type="number" id="seconds" name="seconds" placeholder="Tiempo"></div>
         <div id="values" class="chrono__values">00:00:00</div>
         <div class="chrono__tools">
             <button id="startButton" class="chrono__button button--start">Start</button>
@@ -23,10 +28,44 @@
 <script src="./toastify-js.js"></script>
 
 <script>
-let server = "http://localhost:3000/"
+let server = "http://192.168.0.101:3000/"
+var elem = document.documentElement;
+
+/* View in fullscreen */
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) { /* Firefox */
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE/Edge */
+    document.msExitFullscreen();
+  }
+}
 
 document.querySelector("#startButton").addEventListener(`click`, () => {
-    axios.get(server + `time/start`)
+    let time = 0;
+    if(document.querySelector("#typeOfTime").value === "2"){
+        time = document.querySelector("#seconds").value * 60 || 0;
+    } else{
+        time = document.querySelector("#seconds").value || 0;
+    }
+    console.log(time);
+    axios.get(`${server}time/start/?seconds=${time}`)
     .then(response => {
         Toastify({
             text: response.data,

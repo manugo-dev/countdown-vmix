@@ -2,6 +2,7 @@ var express = require('express');
 var timerJs = require('easytimer');
 var app = express();
 var timer = new timerJs();
+var time = 300;
 
 app.use(express.static('public'));
 
@@ -14,8 +15,11 @@ app.get('/time', function (req, res) {
 });
 
 app.get('/time/start', function (req, res) {
+    if (req.query.seconds !== undefined){
+        var time = parseInt(req.query.seconds);
+    }
     try {
-        timer.start()
+        timer.start({countdown: true, startValues: {seconds: time}})
     } catch (error) {
         res.send(error.toString());
     }

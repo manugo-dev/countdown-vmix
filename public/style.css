@@ -2,11 +2,23 @@
     margin:0;
     padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
+.chrono {
+    display:flex;
+    flex-direction: column;
+}
+
+.chrono_fullscreen {
+    margin:30px auto;
+    padding:10px;
+    font-size:1.5em;
+    text-align: center;
+}
 .chrono__values {
     text-align: center;
-    font-size: 10vh;
+    font-size: 14em;
     padding: 8vh;
 }
 
@@ -36,12 +48,21 @@
 }
 
 
-.chrono__button .button--start {
-
+.chrono__button.button--start {
+    background: rgb(19, 146, 19) !important;
 }
 
-.chrono__button .button--pause {
+.chrono__button.button--start:hover {
+    background: rgb(24, 199, 24) !important;
+}
 
+
+.chrono__button.button--pause {
+    background: rgb(214, 152, 20) !important;
+}
+
+.chrono__button.button--pause:hover {
+    background: rgb(214, 195, 20) !important;
 }
 
 .chrono__button .button--stop {
@@ -50,6 +71,21 @@
 
 .chrono__button .button--reset {
 
+}
+
+.chronoTime {
+    margin: 30px auto;
+    padding:20px;
+    font-size:1em;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chronoTime input {
+    margin-left: 20px;
+    padding:20px;
+    border:1px solid gray;
 }
 
 @media (max-width: 520px) {
